@@ -1,0 +1,30 @@
+<p-fieldset legend="Ajout d'un fan">
+  <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+    <p-floatLabel>
+      <input pInputText id="name" formControlName="name" />
+      <label for="name">Nom du fan</label>
+    </p-floatLabel>
+    <p>
+      Date de naissance : <input pInputText type="date" formControlName="birthdate">
+    </p>
+    <p *ngIf="fg.controls['birthdate'].invalid && fg.controls['birthdate'].touched" style="color : red;">
+      {{fg.controls['birthdate'].getError('ageMinError')}}
+    </p>
+
+    <p-fieldset>
+      <ng-template pTemplate="header"><span>Séries Préférées
+        <button (click)="addShow()" pButton type="button" icon="pi pi-plus" class="p-button-raised p-button-rounded p-button-outlined" size="small"></button>
+      </span>
+      </ng-template>
+      <div *ngIf="getFavoriteArray().length > 0" formArrayName="favoriteShows">
+        <p *ngFor="let s of getFavoriteArray().controls; let i = index;">
+          Série {{i + 1}} : <input pInputText [formControlName]="i">
+          <p-button [rounded]="true" size="small" icon="pi pi-trash" (click)="deleteShow(i)"></p-button>
+        </p>
+      </div>
+    </p-fieldset>
+    <p>
+      <p-button severity="success" type="submit" icon="pi pi-check" label="Valider" [disabled]="fg.invalid"></p-button>
+    </p>
+  </form>
+</p-fieldset>

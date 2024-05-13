@@ -1,0 +1,23 @@
+<p-fieldset legend="Liste des fans">
+  <p-table [value]="fanList">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nom</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-fan let-i = "rowIndex">
+      <tr>
+        <td>{{fan.name}}</td>
+        <td>
+          <p-buttonGroup>
+            <p-button size="small" label="Détails" icon="pi pi-search-plus"(click)="showDetail(i)" />
+            <p-button size="small" [outlined]="true" label="Update" icon="pi pi-user-edit" (click)="showUpdate(i)"/>
+            <p-button size="small" label="Supprimer" icon="pi pi-trash" (click)="deleteFan(i)" />
+          </p-buttonGroup>
+        </td>
+      </tr>
+
+    </ng-template>
+  </p-table>
+</p-fieldset>

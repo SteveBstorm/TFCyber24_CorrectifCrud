@@ -1,0 +1,11 @@
+<p-fieldset legend="{{currentFan.name}}">
+  <p>
+    Date de naissance : {{currentFan.birthdate | date : 'dd/MM/yyyy'}}
+  </p>
+  <p-card header="Liste des séries">
+    @for(item of currentFan.favoriteShows; track $index)
+    {
+      <p>{{item}}</p>
+    }
+  </p-card>
+</p-fieldset>
